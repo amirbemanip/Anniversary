@@ -132,6 +132,61 @@
                 transform: scale(1.03);
             }
         }
+
+        /* Video Modal Styles */
+        .video-modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #000;
+            margin: auto;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 800px;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .modal-video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 101;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -149,17 +204,33 @@
             May our love be forever.
         </p>
         <div class="buttons">
-            <!-- Replace "YOUR_LINK_1_HERE" with the URL for your first digital photo frame -->
-            <a href="YOUR_LINK_1_HERE" class="button">Digital Photo Frame 1</a>
+            <!-- Our Special Memory Film -->
+            <!-- The button now opens a modal to play the video -->
+            <a href="javascript:void(0);" onclick="openVideoModal()" class="button">Our Special Memory Film</a>
             
-            <!-- Replace "YOUR_LINK_2_HERE" with the URL for your second digital photo frame -->
-            <a href="YOUR_LINK_2_HERE" class="button">Digital Photo Frame 2</a>
+            <!-- Our Digital Photo Frame -->
+            <a href="https://amirbemanip.github.io/AR-Anniversary/" class="button" target="_blank">Our Digital Photo Frame</a>
+        </div>
+    </div>
+    
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <!-- Close button for the modal -->
+        <span class="close-btn" onclick="closeVideoModal()">&times;</span>
+        <div class="modal-content">
+            <!-- The video element to play the film -->
+            <video id="anniversaryVideo" class="modal-video" controls>
+                <!-- Source for the video, pointing to the raw GitHub file -->
+                <source src="https://raw.githubusercontent.com/amirbemanip/AR-Anniversary/main/video_2025-09-19_13-07-54.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
     
     <!-- scripts -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.0/tsparticles.min.js"></script>
     <script>
+        // particles.js initialization
         window.onload = function() {
             tsParticles.load("tsparticles", {
                 "fullScreen": {
@@ -229,6 +300,21 @@
                 "retina_detect": true
             });
         };
+        
+        // Functions to control the video modal
+        var videoModal = document.getElementById("videoModal");
+        var video = document.getElementById("anniversaryVideo");
+
+        function openVideoModal() {
+            videoModal.style.display = "flex";
+            video.play();
+        }
+
+        function closeVideoModal() {
+            videoModal.style.display = "none";
+            video.pause();
+            video.currentTime = 0; // Reset video to start
+        }
     </script>
 </body>
 </html>
