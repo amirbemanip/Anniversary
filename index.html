@@ -36,7 +36,7 @@
         .container {
             max-width: 600px;
             width: 90%;
-            background: rgba(255, 255, 255, 0.15); /* Slightly transparent */
+            background: rgba(255, 255, 255, 0.05); /* Increased transparency to 5% */
             backdrop-filter: blur(20px); /* Increased blur for more depth */
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.25); /* More defined border */
@@ -85,20 +85,20 @@
 
             /* iOS-style Glassmorphism with Depth */
             color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05); /* Increased button transparency */
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             
             box-shadow:
                 inset 0 0 10px rgba(255, 255, 255, 0.4),
                 0 5px 15px rgba(0, 0, 0, 0.2),
-                0 0 10px rgba(162, 0, 118, 0.5);
+                0 0 10px rgba(80, 0, 200, 0.5); /* Blue-purple glow */
             
             /* Subtle gradient to add color depth */
             background: linear-gradient(
                 135deg, 
-                rgba(162, 0, 118, 0.3), 
-                rgba(106, 5, 114, 0.3)
+                rgba(60, 0, 150, 0.05), /* Updated gradient transparency */
+                rgba(30, 0, 100, 0.05)
             );
 
             /* Pulse animation */
@@ -108,13 +108,13 @@
         .button:hover {
             background: linear-gradient(
                 135deg,
-                rgba(162, 0, 118, 0.5), 
-                rgba(106, 5, 114, 0.5) 
+                rgba(60, 0, 150, 0.2), /* Updated hover transparency */
+                rgba(30, 0, 100, 0.2) 
             );
             box-shadow: 
                 inset 0 0 15px rgba(255, 255, 255, 0.6),
                 0 8px 20px rgba(0, 0, 0, 0.4),
-                0 0 15px rgba(162, 0, 118, 0.7);
+                0 0 15px rgba(80, 0, 200, 0.7); /* Stronger glow on hover */
             transform: translateY(-2px) scale(1.02);
         }
 
