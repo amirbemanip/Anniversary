@@ -8,10 +8,9 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     
     <style>
-        /* A much simpler and more reliable background */
         body {
             font-family: 'Lato', sans-serif;
-            background: #090a0f;
+            background: #000;
             color: #e0e0e0;
             text-align: center;
             padding: 2rem;
@@ -24,71 +23,30 @@
             overflow: hidden;
         }
 
-        .stars-background {
+        #tsparticles {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), radial-gradient(ellipse at bottom, #1B2735 0%, #090a0f 100%);
+            top: 0;
+            left: 0;
             z-index: 0;
-        }
-
-        .stars-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            animation: animStar 150s linear infinite;
-        }
-
-        .stars-layer:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 50px 160px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 90px 100px, #eee, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 130px 140px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 150px 160px, #eee, rgba(0,0,0,0));
-            background-size: 500px 500px;
-        }
-
-        .stars-layer.layer2 {
-            animation-duration: 200s;
-            background-size: 500px 500px;
-        }
-
-        .stars-layer.layer3 {
-            animation-duration: 250s;
-            background-size: 500px 500px;
-        }
-        
-        @keyframes animStar {
-            from {
-                transform: translateY(0px);
-            }
-            to {
-                transform: translateY(-500px);
-            }
         }
 
         /* Container and Content Styles */
         .container {
             max-width: 600px;
             width: 90%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(255, 255, 255, 0.15); /* Slightly transparent */
+            backdrop-filter: blur(20px); /* Increased blur for more depth */
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.25); /* More defined border */
+            
+            /* 3D Glass Effect */
+            box-shadow: 
+                inset 0 0 15px rgba(255, 255, 255, 0.4), /* Inner glow for a convex look */
+                inset 0 0 5px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.3); /* Main drop shadow */
+
             padding: 2.5rem;
             animation: fadeIn 1.5s ease-in-out;
             position: relative;
@@ -125,22 +83,22 @@
             cursor: pointer;
             border-radius: 50px;
 
-            /* iOS-style Glassmorphism */
+            /* iOS-style Glassmorphism with Depth */
             color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             
             box-shadow:
-                0 0 0.5px 0.5px rgba(255, 255, 255, 0.1) inset,
-                0 0 1px rgba(0, 0, 0, 0.2) inset,
-                0 2px 5px rgba(0, 0, 0, 0.4);
+                inset 0 0 10px rgba(255, 255, 255, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.2),
+                0 0 10px rgba(162, 0, 118, 0.5);
             
-            /* Previous color integrated as a subtle gradient */
+            /* Subtle gradient to add color depth */
             background: linear-gradient(
                 135deg, 
-                rgba(162, 0, 118, 0.2), 
-                rgba(106, 5, 114, 0.2)
+                rgba(162, 0, 118, 0.3), 
+                rgba(106, 5, 114, 0.3)
             );
 
             /* Pulse animation */
@@ -150,13 +108,13 @@
         .button:hover {
             background: linear-gradient(
                 135deg,
-                rgba(162, 0, 118, 0.3),
-                rgba(106, 5, 114, 0.3)
+                rgba(162, 0, 118, 0.5), 
+                rgba(106, 5, 114, 0.5) 
             );
             box-shadow: 
-                0 0 0.5px 0.5px rgba(255, 255, 255, 0.2) inset,
-                0 0 1px rgba(0, 0, 0, 0.3) inset,
-                0 4px 10px rgba(0, 0, 0, 0.5);
+                inset 0 0 15px rgba(255, 255, 255, 0.6),
+                0 8px 20px rgba(0, 0, 0, 0.4),
+                0 0 15px rgba(162, 0, 118, 0.7);
             transform: translateY(-2px) scale(1.02);
         }
 
@@ -177,11 +135,8 @@
     </style>
 </head>
 <body>
-    <div class="stars-background">
-        <div class="stars-layer"></div>
-        <div class="stars-layer layer2"></div>
-        <div class="stars-layer layer3"></div>
-    </div>
+    <!-- particles.js container -->
+    <div id="tsparticles"></div>
 
     <div class="container">
         <h1>Happy Anniversary!</h1>
@@ -201,5 +156,79 @@
             <a href="YOUR_LINK_2_HERE" class="button">Digital Photo Frame 2</a>
         </div>
     </div>
+    
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.0/tsparticles.min.js"></script>
+    <script>
+        window.onload = function() {
+            tsParticles.load("tsparticles", {
+                "fullScreen": {
+                    "enable": true,
+                    "zIndex": -1
+                },
+                "particles": {
+                    "number": {
+                        "value": 150,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle"
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 0.5,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "events": {
+                        "onhover": {
+                            "enable": false
+                        },
+                        "onclick": {
+                            "enable": false
+                        },
+                        "resize": true
+                    }
+                },
+                "retina_detect": true
+            });
+        };
+    </script>
 </body>
 </html>
